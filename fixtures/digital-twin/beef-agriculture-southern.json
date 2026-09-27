@@ -1,0 +1,29 @@
+{
+  "scenarioId": "beef-agriculture-southern",
+  "context": { "target": "Beef", "industry": "Agriculture", "geography": "Southern region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 7, "verifiedRelationships": 13, "criticalDependencies": 2, "confidence": 88, "sourceFreshness": 94.4 },
+  "nodes": [
+    { "id": "target", "name": "US$1B beef exports", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Growing the livestock export market.", "confidence": 95, "updated": "Today" },
+    { "id": "herds", "name": "Livestock producers", "type": "Enterprise", "source": "Agriculture Registry", "icon": "pets", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Verified cattle herds supplying export-ready animals.", "confidence": 90, "updated": "Today" },
+    { "id": "abattoir", "name": "Export abattoir", "type": "Facility", "source": "Food Industry Registry", "icon": "factory", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Processing and cold-chain capacity for export volumes.", "confidence": 86, "updated": "Yesterday" },
+    { "id": "certification", "name": "Certification", "type": "Institution", "source": "Inspection Gateway", "icon": "verified", "cssClass": "institution", "position": "left: 78%; top: 72%;", "description": "Veterinary and export certification readiness.", "confidence": 83, "updated": "Today" },
+    { "id": "risk", "name": "Certification throughput", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Inspection capacity may constrain export revenue.", "confidence": 81, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "herds", "to": "target", "label": "contributes to", "confidence": 90, "isInferred": false },
+    { "from": "herds", "to": "abattoir", "label": "supplies", "confidence": 88, "isInferred": false },
+    { "from": "abattoir", "to": "certification", "label": "requires", "confidence": 89, "isInferred": false },
+    { "from": "risk", "to": "certification", "label": "constrains", "confidence": 81, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Herd health verified", "description": "Export cohort evidence reconciled", "when": "Today", "icon": "verified", "style": "Success" },
+    { "title": "Inspection capacity flagged", "description": "Certification queue approaching SLA threshold", "when": "Yesterday", "icon": "warning_amber", "style": "Warning" }
+  ],
+  "risks": [
+    { "name": "Certification throughput", "owner": "Inspection Authority", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Cold-chain capacity", "owner": "Livestock Programme", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Open certification intervention", "reason": "Protect the beef export revenue target.", "icon": "verified", "style": "Warning" }
+  ]
+}

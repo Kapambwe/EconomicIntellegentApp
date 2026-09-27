@@ -1,0 +1,29 @@
+{
+  "scenarioId": "goats-agriculture-southern",
+  "context": { "target": "Goats", "industry": "Agriculture", "geography": "Southern region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 6, "verifiedRelationships": 11, "criticalDependencies": 2, "confidence": 87, "sourceFreshness": 93.8 },
+  "nodes": [
+    { "id": "target", "name": "Goat value chain", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Grow small-livestock income and market participation.", "confidence": 93, "updated": "Today" },
+    { "id": "producers", "name": "Goat producers", "type": "Enterprise", "source": "Agriculture Registry", "icon": "pets", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Smallholder goat producers and aggregation groups.", "confidence": 88, "updated": "Today" },
+    { "id": "feed", "name": "Feed and water", "type": "Dependency", "source": "Land and Water Registry", "icon": "water_drop", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Critical inputs supporting herd health.", "confidence": 84, "updated": "Yesterday" },
+    { "id": "market", "name": "Market aggregator", "type": "Enterprise", "source": "Market Gateway", "icon": "storefront", "cssClass": "institution", "position": "left: 78%; top: 72%;", "description": "Aggregation and buyer access for producers.", "confidence": 86, "updated": "Today" },
+    { "id": "risk", "name": "Market access gap", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Producer volume is not yet consistently connected to buyers.", "confidence": 80, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "producers", "to": "target", "label": "contributes to", "confidence": 88, "isInferred": false },
+    { "from": "feed", "to": "producers", "label": "enables", "confidence": 84, "isInferred": false },
+    { "from": "producers", "to": "market", "label": "supplies", "confidence": 86, "isInferred": false },
+    { "from": "risk", "to": "market", "label": "constrains", "confidence": 80, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Producer cohort enrolled", "description": "New goat producers added to aggregation pool", "when": "Today", "icon": "groups", "style": "Success" },
+    { "title": "Buyer match pending", "description": "Market route requires confirmation", "when": "Yesterday", "icon": "storefront", "style": "Warning" }
+  ],
+  "risks": [
+    { "name": "Market access", "owner": "Livestock Programme", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Feed availability", "owner": "Producer Support Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Confirm buyer commitment", "reason": "Convert producer capacity into reliable market income.", "icon": "handshake", "style": "Info" }
+  ]
+}

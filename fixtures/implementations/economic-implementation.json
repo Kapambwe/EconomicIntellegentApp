@@ -1,0 +1,45 @@
+{
+  "id": "EI-2026-000184",
+  "name": "Lusaka Soya Aggregation Programme",
+  "actorName": "Zambezi Farmers Cooperative",
+  "actorType": "Farmer cooperative",
+  "industry": "Agriculture",
+  "programme": "Soya Beans: 3 Million Tonnes — Expanding agro-processing",
+  "target": "3 million tonnes of soya beans",
+  "productOrService": "Traceable soya beans for oil and feed processing",
+  "region": "Lusaka and Central Province",
+  "currentStage": "Licence and buyer readiness",
+  "nextStage": "Produce",
+  "progressPercent": 68,
+  "health": { "score": 72, "status": "Watch", "summary": "The cooperative is commercially viable, but food-safety approval and input coverage need attention before the next production milestone.", "signals": [ { "name": "Funding confidence", "score": 22, "explanation": "Approved working capital is available for the next input order." }, { "name": "Buyer readiness", "score": 19, "explanation": "Shoprite and an oil processor have active commitments." }, { "name": "Evidence completeness", "score": 16, "explanation": "Four of six required documents are verified." }, { "name": "Licence delay", "score": -12, "explanation": "Trading and food-safety approval remains with the government agency." } ] },
+  "funding": { "requested": 850000, "approved": 700000, "disbursed": 420000, "outstanding": 280000, "conditions": [ "Submit verified warehouse insurance", "Complete food-safety inspection", "Upload cooperative member register" ] },
+  "training": { "provider": "Small Scale Extension WebApp · Central Extension Hub", "venue": "Chisamba Farmer Training Centre", "schedule": "14–18 October 2026 · Good agricultural practices and traceability", "completionPercent": 75, "status": "In progress" },
+  "production": { "unit": "tonnes", "target": 1200, "actual": 860, "period": "2026 season to date", "varianceExplanation": "Planting was delayed in two clusters; extension support has been assigned." },
+  "inventory": { "onHand": "860 tonnes", "reserved": "500 tonnes", "inTransit": "120 tonnes of certified seed", "warehouse": "Lusaka Agri Warehouse · Bay 4", "status": "Traceable and dispatch-ready" },
+  "delivery": { "offtaker": "Shoprite Zambia and Zambezi Oil Processors", "contractType": "Supermarket retail + industrial raw material", "commitment": "500 tonnes by 30 November 2026", "delivered": "180 tonnes", "status": "On track with recovery plan" },
+  "payment": { "invoiced": 144000, "approved": 128000, "paid": 96000, "overdue": 0, "status": "Reconciled" },
+  "lifecycleStages": [ "Discover", "Qualify", "Apply", "Fund", "Train", "Launch", "Produce", "Store", "Deliver", "Invoice", "Get paid", "Monitor", "Scale" ],
+  "actors": [
+    { "name": "Zambezi Farmers Cooperative", "type": "Farmer cooperative", "role": "Primary implementer", "status": "Active" },
+    { "name": "Ministry of Agriculture Food Safety Unit", "type": "Government agency", "role": "Licence and inspection", "status": "Action required" },
+    { "name": "Zambia Development Bank", "type": "Bank", "role": "Working capital lender", "status": "Facility active" },
+    { "name": "Shoprite Zambia", "type": "Retail offtaker", "role": "Retail buyer", "status": "Commitment active" },
+    { "name": "Central Extension Hub", "type": "Extension provider", "role": "Training and field support", "status": "In progress" },
+    { "name": "Lusaka Agri Warehouse", "type": "Warehouse", "role": "Stock custody", "status": "Ready" }
+  ],
+  "workflows": [
+    { "name": "Seasonal Production and Offtake Readiness", "actor": "Zambezi Farmers Cooperative", "stage": "Produce", "status": "Running", "currentStep": "Confirm input and extension recovery plan", "sla": "Due in 2 days", "nextAction": "Confirm seed delivery" },
+    { "name": "Food Safety and Trading Licence Approval", "actor": "Ministry of Agriculture Food Safety Unit", "stage": "Approve", "status": "Awaiting action", "currentStep": "Review inspection evidence", "sla": "6 hours overdue", "nextAction": "Complete licence decision" },
+    { "name": "KYC, Credit and Working Capital", "actor": "Zambia Development Bank", "stage": "Fund", "status": "Running", "currentStep": "Verify warehouse insurance", "sla": "Due in 1 day", "nextAction": "Release second tranche" },
+    { "name": "Supplier Onboarding and Shelf Availability", "actor": "Shoprite Zambia", "stage": "Deliver", "status": "On track", "currentStep": "Confirm November delivery window", "sla": "Due in 4 days", "nextAction": "Confirm purchase order" }
+  ],
+  "tasks": [
+    { "id": "TASK-001", "title": "Complete food-safety inspection decision", "owner": "Ministry of Agriculture Food Safety Unit", "due": "Today · 6 hours overdue", "status": "Open", "evidence": "Inspection report and corrective action closure" },
+    { "id": "TASK-002", "title": "Upload warehouse insurance certificate", "owner": "Zambezi Farmers Cooperative", "due": "Tomorrow", "status": "Open", "evidence": "Current warehouse insurance certificate" },
+    { "id": "TASK-003", "title": "Confirm November purchase order delivery window", "owner": "Shoprite Zambia", "due": "20 Oct 2026", "status": "In progress", "evidence": "Approved purchase order" }
+  ],
+  "blockers": [ { "category": "Licence", "title": "Food-safety inspection decision is overdue", "owner": "Ministry of Agriculture Food Safety Unit", "severity": "High", "sla": "6 hours overdue", "status": "Open" }, { "category": "Inputs", "title": "Certified seed delivery is delayed for two farmer clusters", "owner": "Extension Services Coordinator", "severity": "Medium", "sla": "Due in 2 days", "status": "Mitigating" } ],
+  "evidence": [ { "name": "Food-safety inspection report", "owner": "Ministry of Agriculture Food Safety Unit", "status": "Awaiting review", "due": "Today" }, { "name": "Warehouse insurance certificate", "owner": "Zambezi Farmers Cooperative", "status": "Awaiting submission", "due": "Tomorrow" }, { "name": "Cooperative member register", "owner": "Zambezi Farmers Cooperative", "status": "Verified", "due": "Completed" }, { "name": "Buyer purchase order", "owner": "Shoprite Zambia", "status": "Verified", "due": "Completed" } ],
+  "messages": [ { "from": "Shoprite Zambia", "message": "Please confirm the November delivery window before the replenishment cut-off.", "time": "18 minutes ago" }, { "from": "Zambia Development Bank", "message": "The second tranche is ready once warehouse insurance is verified.", "time": "Yesterday" } ],
+  "activity": [ { "icon": "verified", "title": "Cooperative member register verified", "detail": "Registry and funder evidence reconciled", "time": "32 minutes ago" }, { "icon": "account_balance", "title": "Funding milestone", "detail": "First working-capital tranche reconciled", "time": "Yesterday" }, { "icon": "warning", "title": "Licence decision overdue", "detail": "Food-safety inspection requires agency action", "time": "Yesterday" }, { "icon": "local_shipping", "title": "Buyer delivery window", "detail": "Shoprite replenishment window awaiting confirmation", "time": "2 days ago" } ]
+}

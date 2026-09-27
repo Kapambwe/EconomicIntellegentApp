@@ -1,0 +1,35 @@
+{
+  "scenarioId": "electricity-energy-national",
+  "context": { "target": "Electricity Generation", "industry": "Energy", "geography": "National view", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 7, "verifiedRelationships": 12, "criticalDependencies": 3, "confidence": 87, "sourceFreshness": 96.8 },
+  "nodes": [
+    { "id": "target", "name": "10,000 MW target", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "National electricity generation target.", "confidence": 96, "updated": "Today" },
+    { "id": "programme", "name": "Power programme", "type": "Programme", "source": "Programme Office", "icon": "hub", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Coordinates generation and grid delivery.", "confidence": 92, "updated": "Today" },
+    { "id": "grid", "name": "Grid connection", "type": "Infrastructure", "source": "Energy Delivery Office", "icon": "bolt", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Critical connection dependency for target delivery.", "confidence": 78, "updated": "Yesterday" },
+    { "id": "facility", "name": "Generation facility", "type": "Asset", "source": "Energy Registry", "icon": "factory", "cssClass": "asset", "position": "left: 78%; top: 72%;", "description": "Verified generation facility and production evidence.", "confidence": 94, "updated": "2 hours ago" },
+    { "id": "contractor", "name": "EPC contractor", "type": "Enterprise", "source": "Business Registry", "icon": "engineering", "cssClass": "institution", "position": "left: 19%; top: 72%;", "description": "Contracted delivery partner for facility works.", "confidence": 89, "updated": "Yesterday" },
+    { "id": "funding", "name": "Funding commitment", "type": "Commitment", "source": "Treasury Gateway", "icon": "account_balance", "cssClass": "institution", "position": "left: 50%; top: 14%;", "description": "Approved capital commitment linked to programme.", "confidence": 97, "updated": "Yesterday" },
+    { "id": "risk", "name": "Connection delay", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "18-day dependency delay beyond approved plan.", "confidence": 84, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "programme", "to": "target", "label": "contributes to", "confidence": 91, "isInferred": false },
+    { "from": "target", "to": "grid", "label": "depends on", "confidence": 94, "isInferred": false },
+    { "from": "grid", "to": "facility", "label": "enables", "confidence": 89, "isInferred": false },
+    { "from": "contractor", "to": "facility", "label": "delivers", "confidence": 93, "isInferred": false },
+    { "from": "funding", "to": "programme", "label": "finances", "confidence": 97, "isInferred": false },
+    { "from": "risk", "to": "grid", "label": "at risk from", "confidence": 84, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Inspection verified", "description": "Generation facility evidence reconciled", "when": "2 hours ago", "icon": "verified", "style": "Success" },
+    { "title": "Funding milestone", "description": "Capital commitment moved to approved", "when": "Yesterday", "icon": "account_balance", "style": "Info" },
+    { "title": "Risk detected", "description": "Grid dependency moved beyond SLA", "when": "Yesterday", "icon": "warning_amber", "style": "Warning" }
+  ],
+  "risks": [
+    { "name": "Grid connection dependency", "owner": "Energy Delivery Office", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Funding release milestone", "owner": "Treasury Gateway", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Approve grid intervention", "reason": "18-day dependency delay requires an owner and SLA.", "icon": "priority_high", "style": "Danger" },
+    { "title": "Review funding release", "reason": "Connect approved capital to the delayed milestone.", "icon": "account_balance", "style": "Warning" }
+  ]
+}

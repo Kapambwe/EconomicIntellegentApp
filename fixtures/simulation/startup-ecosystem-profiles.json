@@ -1,0 +1,122 @@
+[
+  {
+    "kind": "Operating application",
+    "name": "CompanyApp.Clients.NonStateActorApp",
+    "audience": "Citizen start-up owner",
+    "description": "The primary day-to-day workspace for the start-up owner to manage tasks, applications, milestones, evidence and stakeholder requests.",
+    "industries": [],
+    "products": [],
+    "capabilities": ["Business profile", "Tasks and milestones", "Funding applications", "Evidence submission", "Offtaker communication"],
+    "route": "/contracts/{contractId}/implementation",
+    "availability": "Mock integration",
+    "required": true
+  },
+  {
+    "kind": "Operating application",
+    "name": "AccountingWebApp",
+    "audience": "Start-up owner and finance stakeholder",
+    "description": "Financial operating system for bookkeeping, invoicing, procurement, payments, budgets, assets and financial reporting.",
+    "industries": [],
+    "products": [],
+    "capabilities": ["Chart of accounts", "Invoices and receivables", "Purchasing", "Payments", "Cash flow", "Financial reports"],
+    "route": "/procurement/contracts/{contractId}",
+    "availability": "Mock integration",
+    "required": true
+  },
+  {
+    "kind": "Operating application",
+    "name": "WarehouseWebApp",
+    "audience": "Start-up operations team",
+    "description": "Controls inventory, stock receipts, storage locations, dispatches, stock levels and warehouse evidence.",
+    "industries": ["Agriculture", "Agro-processing", "Manufacturing", "Mining"],
+    "products": [],
+    "capabilities": ["Stock register", "Goods received", "Batch and lot control", "Dispatch planning", "Inventory alerts"],
+    "route": "/warehouse/start-up/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Operating application",
+    "name": "CompanyApp.Clients.LogisticsApp",
+    "audience": "Start-up and logistics partner",
+    "description": "Coordinates pickup, transport, delivery schedules, route status and proof of delivery.",
+    "industries": ["Agriculture", "Agro-processing", "Manufacturing", "Mining", "Tourism"],
+    "products": [],
+    "capabilities": ["Transport requests", "Route planning", "Driver assignment", "Delivery status", "Proof of delivery"],
+    "route": "/logistics/shipments/{contractId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Operating application",
+    "name": "CompanyApp.Clients.TrackTraceApp",
+    "audience": "Start-up, buyer and regulator",
+    "description": "Provides end-to-end traceability from production lot through warehouse, transport, buyer receipt and quality evidence.",
+    "industries": ["Agriculture", "Agro-processing", "Manufacturing", "Mining"],
+    "products": [],
+    "capabilities": ["Lot identity", "Chain of custody", "Origin evidence", "Quality events", "Buyer verification"],
+    "route": "/traceability/contract/{contractId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Stakeholder extension",
+    "name": "SmallScaleExtensionWebApp",
+    "audience": "Extension officer and farmer",
+    "description": "Delivers advisory visits, production plans, agronomy guidance, training records and issue escalation to agriculture start-ups.",
+    "industries": ["Agriculture", "Agro-processing"],
+    "products": ["Soya Beans", "Wheat", "Maize", "Sugar", "Beef", "Honey", "Cooking Oil"],
+    "capabilities": ["Extension visits", "Technical advice", "Training plans", "Farm practice checks", "Issue escalation"],
+    "route": "/extension/start-up/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Stakeholder extension",
+    "name": "CompanyApp.Client.Farmers",
+    "audience": "Farmer, cooperative and aggregator",
+    "description": "Supports farmer enrolment, production records, cooperative aggregation and outgrower participation.",
+    "industries": ["Agriculture", "Agro-processing"],
+    "products": ["Soya Beans", "Wheat", "Maize", "Sugar", "Beef", "Honey", "Cooking Oil"],
+    "capabilities": ["Farmer registration", "Production records", "Cooperative pooling", "Input support", "Outgrower delivery"],
+    "route": "/farmers/start-up/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Stakeholder extension",
+    "name": "CompanyApp.Mining",
+    "audience": "Mining operator and local supplier",
+    "description": "Supports mining supplier onboarding, site services, local-content commitments, safety evidence and subcontractor performance.",
+    "industries": ["Mining", "Manufacturing"],
+    "products": ["Copper", "Beneficiated minerals", "Mining services", "Local supplier inputs"],
+    "capabilities": ["Supplier onboarding", "Local-content reporting", "Safety compliance", "Site work orders", "Subcontractor monitoring"],
+    "route": "/mining/suppliers/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Stakeholder extension",
+    "name": "CompanyApp.GoldWebApp",
+    "audience": "Miner, buyer and mineral-trade stakeholder",
+    "description": "Provides mineral trading, responsible sourcing, buyer verification and settlement support where a pack produces precious or strategic minerals.",
+    "industries": ["Mining"],
+    "products": ["Gold", "Copper", "Beneficiated minerals"],
+    "capabilities": ["Miner registration", "Responsible sourcing", "Assay evidence", "Buyer matching", "Mineral settlement"],
+    "route": "/gold/trade/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  },
+  {
+    "kind": "Stakeholder extension",
+    "name": "ExtensionServices",
+    "audience": "Government and specialist stakeholders",
+    "description": "Shared extension-service integration point for training, inspections, certification, legal guidance and business coaching.",
+    "industries": [],
+    "products": [],
+    "capabilities": ["Referral management", "Specialist visits", "Training referrals", "Inspection requests", "Service outcome tracking"],
+    "route": "/extensions/referrals/{packId}",
+    "availability": "Mock integration",
+    "required": false
+  }
+]

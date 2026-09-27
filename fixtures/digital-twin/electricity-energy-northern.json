@@ -1,0 +1,29 @@
+{
+  "scenarioId": "electricity-energy-northern",
+  "context": { "target": "Electricity Generation", "industry": "Energy", "geography": "Northern corridor", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 7, "verifiedRelationships": 13, "criticalDependencies": 4, "confidence": 84, "sourceFreshness": 92.9 },
+  "nodes": [
+    { "id": "target", "name": "Northern power target", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Generation capacity supporting the northern corridor.", "confidence": 93, "updated": "Today" },
+    { "id": "solar", "name": "Solar facility", "type": "Asset", "source": "Energy Registry", "icon": "wb_sunny", "cssClass": "asset", "position": "left: 18%; top: 20%;", "description": "Renewable generation asset with verified capacity.", "confidence": 91, "updated": "Today" },
+    { "id": "substation", "name": "Transmission substation", "type": "Infrastructure", "source": "Grid Registry", "icon": "electrical_services", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Transmission bottleneck for industrial demand.", "confidence": 79, "updated": "Yesterday" },
+    { "id": "industry", "name": "Mining demand", "type": "Market", "source": "Economic Activity Stream", "icon": "precision_manufacturing", "cssClass": "institution", "position": "left: 78%; top: 72%;", "description": "Industrial demand exposed to grid readiness.", "confidence": 88, "updated": "Today" },
+    { "id": "risk", "name": "Transmission constraint", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Transmission readiness is below generation readiness.", "confidence": 86, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "solar", "to": "target", "label": "contributes to", "confidence": 91, "isInferred": false },
+    { "from": "target", "to": "substation", "label": "depends on", "confidence": 92, "isInferred": false },
+    { "from": "substation", "to": "industry", "label": "supplies", "confidence": 88, "isInferred": false },
+    { "from": "risk", "to": "substation", "label": "constrains", "confidence": 86, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Capacity verified", "description": "Solar facility production evidence reconciled", "when": "Today", "icon": "verified", "style": "Success" },
+    { "title": "Transmission risk escalated", "description": "Substation readiness moved below target threshold", "when": "Yesterday", "icon": "warning_amber", "style": "Warning" }
+  ],
+  "risks": [
+    { "name": "Transmission capacity", "owner": "Energy Delivery Office", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Industrial demand exposure", "owner": "Mining Development Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Prioritise substation intervention", "reason": "Protect generation value and industrial demand commitments.", "icon": "bolt", "style": "Warning" }
+  ]
+}

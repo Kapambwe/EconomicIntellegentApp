@@ -1,0 +1,32 @@
+{
+  "scenarioId": "copper-mining-northern",
+  "context": { "target": "Copper", "industry": "Mining", "geography": "Northern corridor", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 8, "verifiedRelationships": 14, "criticalDependencies": 3, "confidence": 89, "sourceFreshness": 95.1 },
+  "nodes": [
+    { "id": "target", "name": "3M tonnes copper", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Copper target maximising mineral wealth.", "confidence": 96, "updated": "Today" },
+    { "id": "mine", "name": "Copper mine", "type": "Asset", "source": "Mining Registry", "icon": "landscape", "cssClass": "asset", "position": "left: 16%; top: 20%;", "description": "Verified production asset in the northern corridor.", "confidence": 93, "updated": "Today" },
+    { "id": "processing", "name": "Beneficiation plant", "type": "Facility", "source": "Industrial Registry", "icon": "factory", "cssClass": "asset", "position": "left: 82%; top: 20%;", "description": "Local processing capacity retaining value in-region.", "confidence": 87, "updated": "Yesterday" },
+    { "id": "rail", "name": "Rail corridor", "type": "Infrastructure", "source": "Logistics Registry", "icon": "train", "cssClass": "asset", "position": "left: 78%; top: 72%;", "description": "Export route connecting mine and market.", "confidence": 91, "updated": "Yesterday" },
+    { "id": "power", "name": "Industrial power", "type": "Dependency", "source": "Energy Registry", "icon": "bolt", "cssClass": "institution", "position": "left: 20%; top: 72%;", "description": "Power availability for extraction and processing.", "confidence": 84, "updated": "Today" },
+    { "id": "risk", "name": "Beneficiation gap", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Processing capacity is below the local-value target.", "confidence": 86, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "mine", "to": "target", "label": "contributes to", "confidence": 94, "isInferred": false },
+    { "from": "mine", "to": "processing", "label": "feeds", "confidence": 91, "isInferred": false },
+    { "from": "processing", "to": "rail", "label": "exports through", "confidence": 88, "isInferred": false },
+    { "from": "power", "to": "processing", "label": "enables", "confidence": 84, "isInferred": false },
+    { "from": "risk", "to": "processing", "label": "constrains", "confidence": 86, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Investor match identified", "description": "Verified processing expansion opportunity ready for review", "when": "Today", "icon": "handshake", "style": "Success" },
+    { "title": "Power capacity checked", "description": "Industrial demand and available capacity reconciled", "when": "Yesterday", "icon": "bolt", "style": "Info" }
+  ],
+  "risks": [
+    { "name": "Beneficiation capacity", "owner": "Mining Development Office", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Rail route reliability", "owner": "Logistics Programme", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Review processing investor match", "reason": "Increase local value retained from copper output.", "icon": "handshake", "style": "Success" },
+    { "title": "Reserve industrial power", "reason": "Protect processing expansion from capacity constraints.", "icon": "bolt", "style": "Warning" }
+  ]
+}

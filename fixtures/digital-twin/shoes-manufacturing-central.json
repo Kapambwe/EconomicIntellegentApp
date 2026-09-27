@@ -1,0 +1,29 @@
+{
+  "scenarioId": "shoes-manufacturing-central",
+  "context": { "target": "Shoes", "industry": "Manufacturing", "geography": "Central region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 7, "verifiedRelationships": 12, "criticalDependencies": 2, "confidence": 90, "sourceFreshness": 95.2 },
+  "nodes": [
+    { "id": "target", "name": "Footwear production", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Grow local footwear production and market share.", "confidence": 95, "updated": "Today" },
+    { "id": "makers", "name": "Footwear makers", "type": "Enterprise", "source": "Business Registry", "icon": "work", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Local manufacturers with verified output capacity.", "confidence": 91, "updated": "Today" },
+    { "id": "materials", "name": "Material suppliers", "type": "Enterprise", "source": "Supplier Registry", "icon": "inventory_2", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Leather, textile and component supply.", "confidence": 88, "updated": "Yesterday" },
+    { "id": "retail", "name": "Retail buyers", "type": "Market", "source": "Market Gateway", "icon": "shopping_cart", "cssClass": "institution", "position": "left: 78%; top: 72%;", "description": "Retail and institutional demand for local footwear.", "confidence": 92, "updated": "Today" },
+    { "id": "risk", "name": "Specification gap", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Some production does not yet meet buyer specifications.", "confidence": 84, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "makers", "to": "target", "label": "contributes to", "confidence": 92, "isInferred": false },
+    { "from": "materials", "to": "makers", "label": "supplies", "confidence": 88, "isInferred": false },
+    { "from": "makers", "to": "retail", "label": "fulfils", "confidence": 92, "isInferred": false },
+    { "from": "risk", "to": "makers", "label": "constrains", "confidence": 84, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Product specification reviewed", "description": "Buyer specification comparison completed", "when": "Today", "icon": "fact_check", "style": "Info" },
+    { "title": "Retail match identified", "description": "Local footwear capacity matched to buyer demand", "when": "Yesterday", "icon": "shopping_cart", "style": "Success" }
+  ],
+  "risks": [
+    { "name": "Product conformity", "owner": "Manufacturing Programme", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Material reliability", "owner": "Supplier Development Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Open conformity support", "reason": "Move local footwear capacity into verified buyer supply.", "icon": "fact_check", "style": "Info" }
+  ]
+}

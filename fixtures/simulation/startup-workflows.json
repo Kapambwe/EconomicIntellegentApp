@@ -1,0 +1,463 @@
+[
+  {
+    "id": "WF-ECOSYSTEM-001",
+    "workflowCode": "ECOSYSTEM-ACTIVATION",
+    "workflowName": "Ecosystem Activation and Onboarding",
+    "triggerType": "Event",
+    "eventNames": ["StartUpPackActivated"],
+    "trigger": "StartUpPackActivated",
+    "purpose": "Create the implementation record, verify the citizen, connect operating applications and assign the first milestone.",
+    "institution": "Economic Intelligence and citizen support",
+    "ownerRole": "Programme Delivery Coordinator",
+    "escalationOwner": "Programme Delivery Unit Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Activate", "Launch"],
+    "tags": ["Activation", "Citizen", "Onboarding"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services"],
+    "steps": [
+      { "order": 1, "name": "Create implementation record", "explanation": "Create the shared start-up implementation identity and link the activated pack.", "responsibleRole": "Economic Intelligence Coordinator", "requiredEvidence": "Activated pack and citizen actor record", "completionEvent": "StartupImplementationCreated", "sla": "4 hours" },
+      { "order": 2, "name": "Verify citizen and business profile", "explanation": "Confirm identity, contact details, registration and eligibility.", "responsibleRole": "Non-state Actor Support Officer", "requiredEvidence": "Identity and registration evidence", "completionEvent": "StartupProfileVerified", "sla": "2 working days" },
+      { "order": 3, "name": "Connect operating applications", "explanation": "Connect citizen, accounting, warehouse, logistics and traceability workspaces.", "responsibleRole": "Integration Coordinator", "requiredEvidence": "Consent and application connection record", "completionEvent": "StartupApplicationsConnected", "sla": "1 working day" },
+      { "order": 4, "name": "Confirm first milestone", "explanation": "Agree the baseline plan and first action with the citizen and coordinator.", "responsibleRole": "Citizen and Coordinator", "requiredEvidence": "Baseline plan and first milestone", "completionEvent": "StartupActivationCompleted", "sla": "2 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-001", "ruleName": "Activation identity required", "machineExpression": "startupImplementationId != null && citizenActorId != null", "explanation": "Every activation must have a shared identity and citizen actor.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Programme Delivery Coordinator", "action": "Assign support owner" },
+      { "level": 2, "after": "4 working days", "recipientRole": "Programme Delivery Unit Lead", "action": "Escalate unresolved activation" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-002",
+    "workflowCode": "ECOSYSTEM-FUNDING-RELEASE",
+    "workflowName": "Ecosystem Funding Application and Disbursement",
+    "triggerType": "Event",
+    "eventNames": ["FundingRequested", "FundingTrancheDelayed"],
+    "trigger": "FundingRequested or FundingTrancheDelayed",
+    "purpose": "Move the start-up from funding request through lawful approval, disbursement and utilisation evidence.",
+    "institution": "AccountingWebApp, funder and programme owner",
+    "ownerRole": "Finance Manager",
+    "escalationOwner": "Accounting Officer",
+    "status": "Active",
+    "version": "1.1",
+    "applicableStages": ["Apply", "Fund", "Activate", "Launch"],
+    "tags": ["Funding", "Accounting", "SLA", "Escalation"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services"],
+    "steps": [
+      { "order": 1, "name": "Validate funding application", "explanation": "Check eligibility, required documents, budget and policy conditions.", "responsibleRole": "Funding Officer", "requiredEvidence": "Application, business plan and budget", "completionEvent": "FundingApplicationValidated", "sla": "2 working days" },
+      { "order": 2, "name": "Approve funding decision", "explanation": "Approve, reject or request clarification using the authorised funding process.", "responsibleRole": "Funder Approval Committee", "requiredEvidence": "Decision record and reasons", "completionEvent": "FundingApproved", "sla": "5 working days" },
+      { "order": 3, "name": "Release first tranche", "explanation": "Verify bank details and release the approved tranche.", "responsibleRole": "Payments Officer", "requiredEvidence": "Funding agreement and payment instruction", "completionEvent": "FundingDisbursed", "sla": "3 working days" },
+      { "order": 4, "name": "Confirm utilisation", "explanation": "Match spending evidence to the approved start-up plan before releasing the next tranche.", "responsibleRole": "Finance Control Officer", "requiredEvidence": "Receipts, invoices and asset evidence", "completionEvent": "FundingUtilisationVerified", "sla": "5 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-002", "ruleName": "Funding evidence required", "machineExpression": "funding.approved == true -> funding.agreementSigned == true", "explanation": "Funding cannot be disbursed before the approved agreement and conditions are complete.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Finance Manager", "action": "Assign delayed funding owner" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Accounting Officer", "action": "Escalate disbursement decision" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-003",
+    "workflowCode": "ECOSYSTEM-PRODUCTION-RECOVERY",
+    "workflowName": "Production Shortfall and Technical Recovery",
+    "triggerType": "Event",
+    "eventNames": ["ProductionShortfallDetected", "EquipmentFailureReported"],
+    "trigger": "ProductionShortfallDetected or EquipmentFailureReported",
+    "purpose": "Recover production, quality or capacity before an offtaker commitment is missed.",
+    "institution": "Extension, technical support and offtaker network",
+    "ownerRole": "Industry Technical Lead",
+    "escalationOwner": "Industry Programme Owner",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Produce", "Store", "Deliver"],
+    "tags": ["Production", "Extension", "Recovery", "Offtaker"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy"],
+    "steps": [
+      { "order": 1, "name": "Validate shortfall", "explanation": "Compare the production plan, actual output, safe capacity and contract commitment.", "responsibleRole": "Production Monitor", "requiredEvidence": "Production records and capacity evidence", "completionEvent": "ShortfallValidated", "sla": "1 working day" },
+      { "order": 2, "name": "Assign technical support", "explanation": "Assign extension, mining, manufacturing or specialist support based on the root cause.", "responsibleRole": "Extension or Technical Officer", "requiredEvidence": "Support assignment and diagnostic report", "completionEvent": "TechnicalSupportAssigned", "sla": "1 working day" },
+      { "order": 3, "name": "Agree recovery plan", "explanation": "Create a recovery plan, substitute capacity or revised delivery plan with the buyer.", "responsibleRole": "Start-up Owner and Offtaker", "requiredEvidence": "Approved recovery plan", "completionEvent": "ProductionRecoveryPlanApproved", "sla": "3 working days" },
+      { "order": 4, "name": "Verify recovery", "explanation": "Confirm output, quality and delivery performance after the intervention.", "responsibleRole": "Quality and Programme Officer", "requiredEvidence": "Inspection, production and delivery evidence", "completionEvent": "ProductionRecoveryVerified", "sla": "10 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-003", "ruleName": "Buyer risk threshold", "machineExpression": "contractedVolume > safeCapacity -> buyerNotification.required = true", "explanation": "A contract must be re-planned when committed supply exceeds safe capacity.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "1 working day", "recipientRole": "Technical Lead", "action": "Assign specialist support" },
+      { "level": 2, "after": "3 working days", "recipientRole": "Industry Programme Owner", "action": "Coordinate substitute capacity" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-004",
+    "workflowCode": "ECOSYSTEM-PAYMENT-RECOVERY",
+    "workflowName": "Invoice and Payment Recovery",
+    "triggerType": "Event",
+    "eventNames": ["InvoiceIssued", "PaymentOverdue"],
+    "trigger": "InvoiceIssued or PaymentOverdue",
+    "purpose": "Resolve invoice and payment blockers before the start-up runs out of working capital.",
+    "institution": "AccountingWebApp and buyer finance team",
+    "ownerRole": "Finance Manager",
+    "escalationOwner": "Accounting Officer",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Invoice", "Get paid", "Monitor"],
+    "tags": ["Invoice", "Payment", "Cash flow", "Recovery"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services"],
+    "steps": [
+      { "order": 1, "name": "Validate invoice and delivery evidence", "explanation": "Match invoice, purchase order, accepted delivery and supplier identity.", "responsibleRole": "Accounts Payable Officer", "requiredEvidence": "Invoice, purchase order and proof of delivery", "completionEvent": "InvoiceValidated", "sla": "2 working days" },
+      { "order": 2, "name": "Resolve exception", "explanation": "Assign tax, price, quantity, bank or quality exceptions to the correct owner.", "responsibleRole": "Finance Control Officer", "requiredEvidence": "Exception decision and corrected record", "completionEvent": "InvoiceExceptionResolved", "sla": "3 working days" },
+      { "order": 3, "name": "Approve and reconcile payment", "explanation": "Approve payment, confirm settlement and reconcile the supplier account.", "responsibleRole": "Accounting Officer", "requiredEvidence": "Approval, bank settlement and ledger reconciliation", "completionEvent": "PaymentReconciled", "sla": "5 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-004", "ruleName": "Payment escalation", "machineExpression": "payment.overdueDays > contract.paymentTermsDays -> escalation.required = true", "explanation": "Overdue payments require an accountable escalation and cash-flow assessment.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Finance Manager", "action": "Assign exception owner" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Accounting Officer", "action": "Escalate payment decision" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-005",
+    "workflowCode": "ECOSYSTEM-HEALTH-REVIEW",
+    "workflowName": "Weekly Ecosystem Health and Blocker Review",
+    "triggerType": "Scheduled",
+    "eventNames": [],
+    "trigger": "Scheduled weekly review",
+    "schedule": "Every Monday at 08:00 Africa/Johannesburg",
+    "purpose": "Review active start-ups, stale events, overdue tasks and emerging blockers before they become critical.",
+    "institution": "Economic Intelligence Control Tower",
+    "ownerRole": "Ecosystem Portfolio Manager",
+    "escalationOwner": "Programme Delivery Unit Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Activate", "Launch", "Produce", "Store", "Deliver", "Invoice", "Get paid", "Monitor", "Scale"],
+    "tags": ["Scheduled", "Health", "Control Tower", "Blockers"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Refresh implementation projections", "explanation": "Rebuild health, milestone, funding, contract and event projections.", "responsibleRole": "Economic Intelligence Analyst", "requiredEvidence": "Projection refresh result", "completionEvent": "StartupProjectionsRefreshed", "sla": "2 hours" },
+      { "order": 2, "name": "Identify at-risk start-ups", "explanation": "Find health-score changes, stale data, missed milestones and unresolved blockers.", "responsibleRole": "Portfolio Manager", "requiredEvidence": "Risk queue and root-cause analysis", "completionEvent": "StartupRiskReviewCompleted", "sla": "4 hours" },
+      { "order": 3, "name": "Dispatch interventions", "explanation": "Run the relevant funding, extension, production, logistics or payment workflow.", "responsibleRole": "Intervention Coordinator", "requiredEvidence": "Assigned intervention tasks", "completionEvent": "InterventionsDispatched", "sla": "1 working day" },
+      { "order": 4, "name": "Escalate systemic constraints", "explanation": "Group repeated blockers and escalate dependencies affecting multiple start-ups.", "responsibleRole": "Programme Delivery Unit Lead", "requiredEvidence": "Systemic constraint brief", "completionEvent": "SystemicConstraintEscalated", "sla": "2 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-005", "ruleName": "At-risk threshold", "machineExpression": "startup.healthScore < 60 || startup.overdueMilestones >= 2 -> intervention.required = true", "explanation": "Low health or repeated overdue milestones require an intervention.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "1 working day", "recipientRole": "Portfolio Manager", "action": "Assign intervention" },
+      { "level": 2, "after": "3 working days", "recipientRole": "Programme Delivery Unit Lead", "action": "Escalate systemic blocker" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-006",
+    "workflowCode": "ECOSYSTEM-TRAINING-EXTENSION",
+    "workflowName": "Training and Extension Support",
+    "triggerType": "Event",
+    "eventNames": ["TrainingReferralCreated", "SupportRequestRaised", "TrainingAssessmentFailed"],
+    "trigger": "TrainingReferralCreated or SupportRequestRaised or TrainingAssessmentFailed",
+    "purpose": "Match citizens, farmers and small businesses with the right training, extension and technical support before capability gaps delay launch or production.",
+    "institution": "SmallScaleExtensionWebApp, training providers and sector support organisations",
+    "ownerRole": "Extension Services Coordinator",
+    "escalationOwner": "Ecosystem Capability Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Train", "Launch", "Produce", "Monitor"],
+    "tags": ["Training", "Extension", "Skills", "Capability"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Tourism", "Services"],
+    "steps": [
+      { "order": 1, "name": "Assess capability gap", "explanation": "Compare required skills for the selected start-up pack with the actor's declared skills, assessment results and operating context.", "responsibleRole": "Extension Assessment Officer", "requiredEvidence": "Skills profile, assessment result and start-up requirements", "completionEvent": "CapabilityGapAssessed", "sla": "1 working day" },
+      { "order": 2, "name": "Assign training pathway", "explanation": "Select classroom, field, digital or apprenticeship training and reserve a suitable provider or cohort.", "responsibleRole": "Training Coordinator", "requiredEvidence": "Training referral, provider acceptance and schedule", "completionEvent": "TrainingPathwayAssigned", "sla": "2 working days" },
+      { "order": 3, "name": "Deliver extension intervention", "explanation": "Provide practical coaching on production, quality, safety, record keeping or compliance at the operating site.", "responsibleRole": "Extension Specialist", "requiredEvidence": "Attendance, field-visit report and coaching plan", "completionEvent": "ExtensionInterventionCompleted", "sla": "10 working days" },
+      { "order": 4, "name": "Verify readiness", "explanation": "Confirm the actor can safely perform the required activities and close or re-plan any remaining capability gap.", "responsibleRole": "Training Assessor and Programme Coordinator", "requiredEvidence": "Competency assessment and readiness decision", "completionEvent": "CapabilityReadinessVerified", "sla": "3 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-006", "ruleName": "Safety-critical training gate", "machineExpression": "requiredSkills.any(skill => skill.safetyCritical && !actor.skills.contains(skill)) -> launch.blocked = true", "explanation": "A start-up cannot launch a safety-critical activity until the required competency is verified.", "status": "Active" },
+      { "id": "SWR-007", "ruleName": "Training venue required", "machineExpression": "training.required == true -> training.venueId != null && training.startDate != null", "explanation": "Every training requirement must have a confirmed delivery location and date.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Extension Services Coordinator", "action": "Reassign provider or cohort" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Ecosystem Capability Lead", "action": "Escalate unavailable training capacity" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-007",
+    "workflowCode": "ECOSYSTEM-INPUT-EQUIPMENT",
+    "workflowName": "Input and Equipment Readiness",
+    "triggerType": "Event",
+    "eventNames": ["ProductionPlanCreated", "InputRequested", "EquipmentFailureReported"],
+    "trigger": "ProductionPlanCreated or InputRequested or EquipmentFailureReported",
+    "purpose": "Ensure the inputs, tools, machinery, energy and maintenance support required by an economic actor are ready before the committed production date.",
+    "institution": "Warehouse, extension, equipment suppliers and sector support services",
+    "ownerRole": "Operations Readiness Coordinator",
+    "escalationOwner": "Supply Chain Programme Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Fund", "Train", "Activate", "Launch", "Produce"],
+    "tags": ["Inputs", "Equipment", "Readiness", "Supply chain"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Translate plan into requirements", "explanation": "Convert the production plan into quantities, specifications, delivery dates, equipment and service requirements.", "responsibleRole": "Operations Planner", "requiredEvidence": "Approved production plan and bill of inputs", "completionEvent": "OperationalRequirementsCreated", "sla": "1 working day" },
+      { "order": 2, "name": "Confirm availability and funding", "explanation": "Check inventory, supplier capacity, approved budget, equipment-pool access and any import or procurement dependencies.", "responsibleRole": "Procurement and Finance Officer", "requiredEvidence": "Supplier quote, stock reservation and funding confirmation", "completionEvent": "InputsAndEquipmentReserved", "sla": "3 working days" },
+      { "order": 3, "name": "Deliver and commission", "explanation": "Coordinate delivery, installation, calibration and safe-use orientation at the actor's operating site.", "responsibleRole": "Equipment and Logistics Coordinator", "requiredEvidence": "Delivery note, commissioning checklist and handover", "completionEvent": "EquipmentCommissioned", "sla": "5 working days" },
+      { "order": 4, "name": "Release production readiness", "explanation": "Confirm all critical inputs and equipment are available and authorise the production milestone.", "responsibleRole": "Production Readiness Officer", "requiredEvidence": "Readiness checklist and owner sign-off", "completionEvent": "ProductionReadinessReleased", "sla": "1 working day" }
+    ],
+    "rules": [
+      { "id": "SWR-008", "ruleName": "Critical input coverage", "machineExpression": "criticalInputCoverage < 1.0 -> production.start = blocked", "explanation": "Production cannot be released when critical inputs are not fully covered.", "status": "Active" },
+      { "id": "SWR-009", "ruleName": "Equipment safety evidence", "machineExpression": "equipment.requiresCommissioning == true -> commissioning.approved == true", "explanation": "Equipment requiring commissioning must be approved before use.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Operations Readiness Coordinator", "action": "Source an approved substitute" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Supply Chain Programme Lead", "action": "Coordinate pooled capacity or priority procurement" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-008",
+    "workflowCode": "ECOSYSTEM-WAREHOUSE-CONTROL",
+    "workflowName": "Warehouse Receipt and Stock Protection",
+    "triggerType": "Event",
+    "eventNames": ["WarehouseReceiptCreated", "WarehouseConditionBreached", "InventoryShortfallDetected"],
+    "trigger": "WarehouseReceiptCreated or WarehouseConditionBreached or InventoryShortfallDetected",
+    "purpose": "Protect product quality, inventory accuracy and buyer commitments from receipt through storage and release.",
+    "institution": "WarehouseWebApp, TrackTraceApp, producer and offtaker",
+    "ownerRole": "Warehouse Operations Manager",
+    "escalationOwner": "Supply Chain Control Tower Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Produce", "Store", "Deliver", "Monitor"],
+    "tags": ["Warehouse", "Inventory", "Quality", "Traceability"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Retail", "Energy"],
+    "steps": [
+      { "order": 1, "name": "Receive and inspect stock", "explanation": "Record quantity, quality, batch, origin and condition at the warehouse gate.", "responsibleRole": "Warehouse Receiving Officer", "requiredEvidence": "Goods received note, inspection and batch record", "completionEvent": "StockReceivedAndInspected", "sla": "4 hours" },
+      { "order": 2, "name": "Put away and trace inventory", "explanation": "Assign storage location, custody record and traceability identity for each lot or unit.", "responsibleRole": "Inventory Controller", "requiredEvidence": "Bin assignment and traceability record", "completionEvent": "InventoryPutAway", "sla": "4 hours" },
+      { "order": 3, "name": "Resolve quality or variance exception", "explanation": "Investigate damaged, contaminated, missing or misclassified stock and determine disposition.", "responsibleRole": "Quality and Inventory Officer", "requiredEvidence": "Exception report, photos and disposition decision", "completionEvent": "WarehouseExceptionResolved", "sla": "1 working day" },
+      { "order": 4, "name": "Release stock for dispatch", "explanation": "Reserve compliant stock against the buyer order and issue the dispatch-ready confirmation.", "responsibleRole": "Warehouse Operations Manager", "requiredEvidence": "Stock reservation, release approval and pick list", "completionEvent": "StockReleasedForDispatch", "sla": "1 working day" }
+    ],
+    "rules": [
+      { "id": "SWR-010", "ruleName": "Traceability gate", "machineExpression": "stock.status == 'DispatchReady' -> stock.batchId != null && stock.originId != null", "explanation": "Stock cannot be released without origin and batch traceability.", "status": "Active" },
+      { "id": "SWR-011", "ruleName": "Condition breach quarantine", "machineExpression": "storage.conditionBreach == true -> stock.status = 'Quarantine' && qualityReview.required = true", "explanation": "A storage condition breach automatically quarantines affected stock for review.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "4 hours", "recipientRole": "Warehouse Operations Manager", "action": "Assign quality or inventory investigation" },
+      { "level": 2, "after": "1 working day", "recipientRole": "Supply Chain Control Tower Lead", "action": "Protect buyer allocation and arrange substitute stock" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-009",
+    "workflowCode": "ECOSYSTEM-DELIVERY-RECOVERY",
+    "workflowName": "Logistics Dispatch and Delivery Recovery",
+    "triggerType": "Event",
+    "eventNames": ["DispatchCreated", "PickupMissed", "InTransitDelay", "ProofOfDeliveryMissing"],
+    "trigger": "DispatchCreated or PickupMissed or InTransitDelay or ProofOfDeliveryMissing",
+    "purpose": "Keep deliveries moving, make delays visible and recover buyer service levels when logistics events threaten an offtake commitment.",
+    "institution": "CompanyApp.Clients.LogisticsApp, TrackTraceApp, warehouse and buyer",
+    "ownerRole": "Logistics Control Coordinator",
+    "escalationOwner": "Commercial Fulfilment Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Deliver", "Invoice", "Get paid", "Monitor"],
+    "tags": ["Logistics", "Delivery", "Track and trace", "Offtaker"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Validate dispatch plan", "explanation": "Match the order, released stock, vehicle capacity, route, driver and delivery window.", "responsibleRole": "Dispatch Planner", "requiredEvidence": "Dispatch order, pick list and route plan", "completionEvent": "DispatchValidated", "sla": "4 hours" },
+      { "order": 2, "name": "Assign carrier and track movement", "explanation": "Assign an approved carrier and monitor pickup, transit milestones and temperature or condition data where required.", "responsibleRole": "Logistics Coordinator", "requiredEvidence": "Carrier assignment and tracking record", "completionEvent": "ShipmentTracked", "sla": "1 working day" },
+      { "order": 3, "name": "Recover delivery exception", "explanation": "Reroute, replace the vehicle, notify the buyer or arrange substitute stock when a delivery milestone is missed.", "responsibleRole": "Logistics Recovery Officer", "requiredEvidence": "Exception decision, buyer notification and revised ETA", "completionEvent": "DeliveryRecoveryPlanIssued", "sla": "4 hours" },
+      { "order": 4, "name": "Confirm delivery and billing release", "explanation": "Capture proof of delivery, buyer acceptance and the evidence needed to release invoicing.", "responsibleRole": "Commercial Fulfilment Officer", "requiredEvidence": "Signed proof of delivery and buyer acceptance", "completionEvent": "DeliveryAccepted", "sla": "1 working day" }
+    ],
+    "rules": [
+      { "id": "SWR-012", "ruleName": "Delivery window protection", "machineExpression": "shipment.eta > order.deliveryWindow.end -> buyerNotification.required = true && recoveryPlan.required = true", "explanation": "A late estimated arrival requires buyer communication and an active recovery plan.", "status": "Active" },
+      { "id": "SWR-013", "ruleName": "Invoice evidence gate", "machineExpression": "invoice.status == 'Ready' -> delivery.proofOfDelivery == true && buyer.accepted == true", "explanation": "An invoice cannot be released without delivery and buyer acceptance evidence.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "4 hours", "recipientRole": "Logistics Control Coordinator", "action": "Reroute or assign substitute carrier" },
+      { "level": 2, "after": "1 working day", "recipientRole": "Commercial Fulfilment Lead", "action": "Negotiate buyer recovery and protect contract score" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-010",
+    "workflowCode": "ECOSYSTEM-OFFTAKER-PROTECTION",
+    "workflowName": "Offtaker Contract Commitment Protection",
+    "triggerType": "Condition",
+    "eventNames": ["OfftakerContractCreated", "ContractVolumeRiskDetected", "QualityFailureDetected", "MarketPriceChanged"],
+    "trigger": "OfftakerContractCreated or ContractVolumeRiskDetected or QualityFailureDetected or MarketPriceChanged",
+    "purpose": "Keep offtake contracts commercially viable by monitoring volume, quality, price, delivery and buyer obligations across the ecosystem.",
+    "institution": "Economic Intelligence Control Tower, producer network and offtaker",
+    "ownerRole": "Offtake Relationship Manager",
+    "escalationOwner": "Commercial Ecosystem Director",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Apply", "Launch", "Produce", "Deliver", "Get paid", "Scale"],
+    "tags": ["Offtaker", "Contracts", "Commercial", "Market risk"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Assess contract health", "explanation": "Compare committed volume, quality, price, delivery dates, payment terms and current performance signals.", "responsibleRole": "Commercial Analyst", "requiredEvidence": "Signed contract, forecast and performance data", "completionEvent": "OfftakeHealthAssessed", "sla": "1 working day" },
+      { "order": 2, "name": "Coordinate corrective action", "explanation": "Launch the relevant production, training, warehouse, logistics or payment workflow for the identified risk.", "responsibleRole": "Offtake Relationship Manager", "requiredEvidence": "Assigned corrective workflow and accountable owner", "completionEvent": "OfftakeCorrectiveActionAssigned", "sla": "1 working day" },
+      { "order": 3, "name": "Agree commercial adjustment", "explanation": "Where necessary, agree revised quantity, delivery window, quality specification, price or substitute supply with the buyer.", "responsibleRole": "Producer and Buyer Contract Owners", "requiredEvidence": "Approved variation, waiver or recovery agreement", "completionEvent": "OfftakeVariationApproved", "sla": "5 working days" },
+      { "order": 4, "name": "Verify contract recovery", "explanation": "Confirm the next delivery, payment and quality milestones are back on track and update the contract score.", "responsibleRole": "Commercial Assurance Officer", "requiredEvidence": "Accepted delivery, settlement and contract health update", "completionEvent": "OfftakeContractRecovered", "sla": "10 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-014", "ruleName": "Contract capacity risk", "machineExpression": "forecastVolume < contractedVolume * 0.9 -> contract.status = 'AtRisk' && intervention.required = true", "explanation": "A forecast below 90 percent of the contracted volume creates an intervention case.", "status": "Active" },
+      { "id": "SWR-015", "ruleName": "Quality rejection response", "machineExpression": "quality.rejectionRate > contract.maxRejectionRate -> correctiveAction.required = true && buyerNotification.required = true", "explanation": "Quality performance above the contractual threshold must trigger corrective action and buyer communication.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "1 working day", "recipientRole": "Offtake Relationship Manager", "action": "Convene producer and buyer recovery review" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Commercial Ecosystem Director", "action": "Approve substitute supply, contract variation or executive intervention" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-011",
+    "workflowCode": "ECOSYSTEM-QUALIFICATION-GATE",
+    "workflowName": "Start-up Qualification and Eligibility Gate",
+    "triggerType": "Condition",
+    "eventNames": ["SimulationSaved", "StartUpPackDiscovered", "EligibilityEvidenceUpdated"],
+    "trigger": "SimulationSaved or StartUpPackDiscovered or eligibility evidence changed",
+    "purpose": "Determine whether a citizen or organisation is ready to apply for a start-up pack and route missing requirements to the correct support actor.",
+    "institution": "Economic Intelligence Control Tower, registry and programme administrators",
+    "ownerRole": "Start-up Qualification Officer",
+    "escalationOwner": "Programme Eligibility Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Discover", "Qualify", "Apply"],
+    "tags": ["Qualification", "Eligibility", "Discovery", "Condition"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Match opportunity to actor profile", "explanation": "Compare the selected industry, region, skills, funding preference and current production with the start-up pack requirements.", "responsibleRole": "Qualification Analyst", "requiredEvidence": "Actor profile, target industry and selected opportunity", "completionEvent": "OpportunityProfileMatched", "sla": "4 hours" },
+      { "order": 2, "name": "Check eligibility conditions", "explanation": "Evaluate age, location, ownership, registration, sector, policy and legal requirements using the available evidence.", "responsibleRole": "Eligibility Officer", "requiredEvidence": "Identity, registration, location and policy evidence", "completionEvent": "EligibilityConditionsEvaluated", "sla": "2 working days" },
+      { "order": 3, "name": "Create requirement resolution tasks", "explanation": "Create stakeholder tasks for every missing or conflicting requirement instead of rejecting an otherwise viable opportunity.", "responsibleRole": "Ecosystem Case Coordinator", "requiredEvidence": "Requirement checklist and assigned tasks", "completionEvent": "QualificationTasksCreated", "sla": "1 working day" },
+      { "order": 4, "name": "Issue qualification decision", "explanation": "Mark the actor qualified, conditionally qualified or not yet qualified and provide the next action.", "responsibleRole": "Start-up Qualification Officer", "requiredEvidence": "Qualification decision and reasons", "completionEvent": "StartUpQualificationCompleted", "sla": "1 working day" }
+    ],
+    "rules": [
+      { "id": "SWR-016", "ruleName": "Mandatory eligibility evidence", "machineExpression": "mandatoryEvidence.any(item => item.status != 'Verified') -> qualification.status = 'Conditional'", "explanation": "Missing mandatory evidence creates a supported conditional qualification rather than an unexplained rejection.", "status": "Active" },
+      { "id": "SWR-017", "ruleName": "Regional programme fit", "machineExpression": "pack.targetRegions.contains(actor.region) == false -> referral.required = true", "explanation": "An opportunity outside its target region must be referred to the appropriate programme or region.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Start-up Qualification Officer", "action": "Resolve missing evidence with the actor" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Programme Eligibility Lead", "action": "Review disputed or cross-region eligibility" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-012",
+    "workflowCode": "ECOSYSTEM-LAUNCH-READINESS",
+    "workflowName": "Launch Readiness and Go-Live Approval",
+    "triggerType": "Stage transition",
+    "eventNames": ["TrainingCompleted", "FundingDisbursed", "LaunchReadinessRequested"],
+    "trigger": "Stage changes to Launch or LaunchReadinessRequested",
+    "purpose": "Coordinate the final checks required before a farming, manufacturing, trading, mining, services or tourism start-up begins operating.",
+    "institution": "Programme coordinator, registry, accounting, safety, logistics and extension stakeholders",
+    "ownerRole": "Launch Readiness Manager",
+    "escalationOwner": "Ecosystem Operations Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Train", "Launch"],
+    "tags": ["Launch", "Readiness", "Safety", "Stage transition"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Confirm registration and operating location", "explanation": "Verify the actor, operating address, permits, lease or land access and required sector registrations.", "responsibleRole": "Registry and Compliance Officer", "requiredEvidence": "Registration, permit and location evidence", "completionEvent": "OperatingProfileVerified", "sla": "2 working days" },
+      { "order": 2, "name": "Confirm people and safety readiness", "explanation": "Check training completion, protective equipment, safety procedures and responsible supervisors.", "responsibleRole": "Safety and Training Officer", "requiredEvidence": "Competency, safety induction and equipment records", "completionEvent": "SafetyReadinessVerified", "sla": "2 working days" },
+      { "order": 3, "name": "Confirm applications and records", "explanation": "Verify accounting, inventory, warehouse, logistics and traceability applications are connected where applicable.", "responsibleRole": "Digital Ecosystem Coordinator", "requiredEvidence": "Application connection and test transaction", "completionEvent": "OperatingSystemsVerified", "sla": "1 working day" },
+      { "order": 4, "name": "Approve go-live", "explanation": "Release the start-up to operate, publish the first milestone and notify all accountable ecosystem participants.", "responsibleRole": "Launch Readiness Manager", "requiredEvidence": "Signed go-live checklist and operating plan", "completionEvent": "StartUpGoLiveApproved", "sla": "1 working day" }
+    ],
+    "rules": [
+      { "id": "SWR-018", "ruleName": "Launch safety gate", "machineExpression": "safetyCriticalActivity == true && safetyReadiness.status != 'Verified' -> stageTransition.blocked = true", "explanation": "Safety-critical activities cannot move to Launch without verified readiness.", "status": "Active" },
+      { "id": "SWR-019", "ruleName": "Operating record gate", "machineExpression": "goLive.approved == true -> accounting.connection == true && operatingPlan.status == 'Approved'", "explanation": "A start-up must have a connected operating record and approved plan before go-live.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "2 working days", "recipientRole": "Launch Readiness Manager", "action": "Assign missing readiness owner" },
+      { "level": 2, "after": "5 working days", "recipientRole": "Ecosystem Operations Lead", "action": "Resolve cross-institution launch blocker" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-013",
+    "workflowCode": "ECOSYSTEM-QUALITY-CORRECTIVE-ACTION",
+    "workflowName": "Quality Failure and Corrective Action",
+    "triggerType": "Condition",
+    "eventNames": ["InspectionFailed", "QualityRejectionRecorded", "TraceabilityExceptionDetected"],
+    "trigger": "quality score below threshold or inspection failed",
+    "purpose": "Contain poor-quality, unsafe or untraceable output and help the actor correct the root cause before further sales or delivery.",
+    "institution": "Quality authority, extension, producer, warehouse and offtaker",
+    "ownerRole": "Quality Assurance Coordinator",
+    "escalationOwner": "Sector Quality Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Produce", "Store", "Deliver", "Monitor"],
+    "tags": ["Quality", "Corrective action", "Traceability", "Risk"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail"],
+    "steps": [
+      { "order": 1, "name": "Contain affected output", "explanation": "Quarantine affected lots, stop unsafe dispatches and notify the relevant warehouse and buyer owners.", "responsibleRole": "Quality Assurance Officer", "requiredEvidence": "Quarantine record, affected lot list and notifications", "completionEvent": "QualityContainmentCompleted", "sla": "4 hours" },
+      { "order": 2, "name": "Investigate root cause", "explanation": "Trace inputs, process records, storage conditions, equipment, training and handling to identify the failure cause.", "responsibleRole": "Quality Investigator and Extension Specialist", "requiredEvidence": "Root-cause report and traceability chain", "completionEvent": "QualityRootCauseIdentified", "sla": "2 working days" },
+      { "order": 3, "name": "Execute corrective action", "explanation": "Implement the approved correction, which may include retraining, process change, equipment repair, rework or disposal.", "responsibleRole": "Actor and Corrective Action Owner", "requiredEvidence": "Corrective action plan and implementation evidence", "completionEvent": "QualityCorrectiveActionImplemented", "sla": "5 working days" },
+      { "order": 4, "name": "Release compliant output", "explanation": "Repeat inspection and release only compliant output, updating the contract and quality score.", "responsibleRole": "Quality Assurance Coordinator", "requiredEvidence": "Passed inspection and release decision", "completionEvent": "QualityReleaseApproved", "sla": "2 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-020", "ruleName": "Automatic quarantine", "machineExpression": "inspection.status == 'Failed' || traceability.complete == false -> inventory.status = 'Quarantine'", "explanation": "Failed inspection or incomplete traceability automatically prevents dispatch.", "status": "Active" },
+      { "id": "SWR-021", "ruleName": "Repeat failure escalation", "machineExpression": "quality.failuresLast90Days >= 2 -> sectorReview.required = true", "explanation": "Repeated failures require sector-level review and a strengthened support plan.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "4 hours", "recipientRole": "Quality Assurance Coordinator", "action": "Confirm containment and buyer notification" },
+      { "level": 2, "after": "2 working days", "recipientRole": "Sector Quality Lead", "action": "Approve enhanced corrective action or suspend release" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-014",
+    "workflowCode": "ECOSYSTEM-CASHFLOW-DISTRESS",
+    "workflowName": "Cash-Flow Distress and Working Capital Recovery",
+    "triggerType": "Condition",
+    "eventNames": ["CashFlowForecastUpdated", "PaymentOverdue", "FundingTrancheDelayed", "ExpenseLimitBreached"],
+    "trigger": "cash runway below threshold or overdue receivable detected",
+    "purpose": "Detect working-capital distress early and coordinate payment recovery, funding, cost controls and buyer actions before the actor stops operating.",
+    "institution": "AccountingWebApp, funders, buyers and programme finance support",
+    "ownerRole": "Working Capital Support Officer",
+    "escalationOwner": "Ecosystem Finance Lead",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Launch", "Produce", "Deliver", "Invoice", "Get paid", "Monitor"],
+    "tags": ["Cash flow", "Finance", "Working capital", "Early warning"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Calculate cash runway", "explanation": "Combine bank position, expected receipts, approved funding, committed costs and production obligations.", "responsibleRole": "Financial Intelligence Analyst", "requiredEvidence": "Cash-flow forecast and reconciled ledger", "completionEvent": "CashRunwayCalculated", "sla": "4 hours" },
+      { "order": 2, "name": "Prioritise critical obligations", "explanation": "Protect wages, safety, production inputs, taxes, utilities and contract-critical obligations while identifying deferrable spend.", "responsibleRole": "Finance Manager and Actor", "requiredEvidence": "Prioritised obligations and cash-control plan", "completionEvent": "CriticalObligationsPrioritised", "sla": "1 working day" },
+      { "order": 3, "name": "Recover receipts and funding", "explanation": "Coordinate overdue invoice collection, funding release, buyer confirmation and approved short-term working capital.", "responsibleRole": "Finance Recovery Coordinator", "requiredEvidence": "Collection plan, funding request or payment commitment", "completionEvent": "WorkingCapitalRecoveryStarted", "sla": "2 working days" },
+      { "order": 4, "name": "Confirm stabilisation", "explanation": "Verify runway improvement, settled critical obligations and an agreed monitoring cadence.", "responsibleRole": "Ecosystem Finance Lead", "requiredEvidence": "Updated forecast, settlement evidence and recovery decision", "completionEvent": "CashFlowStabilised", "sla": "10 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-022", "ruleName": "Runway intervention threshold", "machineExpression": "cash.runwayDays < 30 -> workingCapitalIntervention.required = true", "explanation": "Less than 30 days of runway creates an early intervention case.", "status": "Active" },
+      { "id": "SWR-023", "ruleName": "Critical payment protection", "machineExpression": "cash.runwayDays < 14 -> criticalObligations.locked = true && executiveReview.required = true", "explanation": "Severe cash distress locks critical obligations and requires finance leadership review.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "1 working day", "recipientRole": "Working Capital Support Officer", "action": "Launch collections and cash-control plan" },
+      { "level": 2, "after": "3 working days", "recipientRole": "Ecosystem Finance Lead", "action": "Approve restructuring, bridge support or buyer intervention" }
+    ]
+  },
+  {
+    "id": "WF-ECOSYSTEM-015",
+    "workflowCode": "ECOSYSTEM-SCALE-READINESS",
+    "workflowName": "Scale-Up Readiness and Replication Review",
+    "triggerType": "Scheduled",
+    "eventNames": ["ScaleRequestSubmitted", "TargetMilestoneReached", "OfftakerCapacityIncreased"],
+    "trigger": "ScaleRequestSubmitted or target milestone reached; monthly review",
+    "schedule": "First business day of every month at 09:00 Africa/Johannesburg",
+    "purpose": "Help proven start-ups scale responsibly into new regions, products, facilities or buyer channels without creating quality, funding or supply-chain bottlenecks.",
+    "institution": "Economic Intelligence Control Tower, funders, offtakers and sector institutions",
+    "ownerRole": "Scale Readiness Manager",
+    "escalationOwner": "Economic Development Portfolio Director",
+    "status": "Active",
+    "version": "1.0",
+    "applicableStages": ["Monitor", "Scale"],
+    "tags": ["Scale", "Replication", "Portfolio", "Scheduled"],
+    "industryTags": ["Agriculture", "Mining", "Manufacturing", "Energy", "Retail", "Services", "Tourism"],
+    "steps": [
+      { "order": 1, "name": "Review proven performance", "explanation": "Assess production, quality, cash flow, contracts, employment, compliance and operating health over the review period.", "responsibleRole": "Portfolio Performance Analyst", "requiredEvidence": "Verified performance dashboard and trend analysis", "completionEvent": "ScalePerformanceReviewed", "sla": "2 working days" },
+      { "order": 2, "name": "Test scale scenario", "explanation": "Model the effect of increased volume, new locations, additional staff, equipment, funding and buyer commitments.", "responsibleRole": "Economic Simulation Analyst", "requiredEvidence": "Approved scale simulation and assumptions", "completionEvent": "ScaleScenarioCompleted", "sla": "5 working days" },
+      { "order": 3, "name": "Approve scale safeguards", "explanation": "Agree capital, skills, quality, working capital, logistics, environmental and governance safeguards before expansion.", "responsibleRole": "Scale Readiness Committee", "requiredEvidence": "Scale plan, risk register and safeguard approvals", "completionEvent": "ScaleSafeguardsApproved", "sla": "5 working days" },
+      { "order": 4, "name": "Launch replication and monitor", "explanation": "Create the expansion implementation, assign support workflows and monitor the first scale milestones.", "responsibleRole": "Scale Programme Coordinator", "requiredEvidence": "Expansion implementation and monitoring plan", "completionEvent": "ScaleExpansionLaunched", "sla": "10 working days" }
+    ],
+    "rules": [
+      { "id": "SWR-024", "ruleName": "Performance gate for scale", "machineExpression": "healthScore >= 75 && quality.passRate >= 0.95 && cash.runwayDays >= 60 -> scale.review = 'Eligible'", "explanation": "Scale eligibility requires healthy operations, quality performance and sufficient runway.", "status": "Active" },
+      { "id": "SWR-025", "ruleName": "Concentration risk review", "machineExpression": "singleBuyerShare > 0.6 || singleRegionShare > 0.7 -> diversificationPlan.required = true", "explanation": "High dependence on one buyer or region requires a diversification plan before scaling.", "status": "Active" }
+    ],
+    "escalations": [
+      { "level": 1, "after": "5 working days", "recipientRole": "Scale Readiness Manager", "action": "Resolve scale evidence gaps" },
+      { "level": 2, "after": "10 working days", "recipientRole": "Economic Development Portfolio Director", "action": "Decide scale funding or defer expansion" }
+    ]
+  }
+]

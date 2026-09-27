@@ -1,0 +1,29 @@
+{
+  "scenarioId": "wheat-agriculture-southern",
+  "context": { "target": "Wheat", "industry": "Agriculture", "geography": "Southern region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 6, "verifiedRelationships": 10, "criticalDependencies": 2, "confidence": 86, "sourceFreshness": 93.7 },
+  "nodes": [
+    { "id": "target", "name": "1M tonnes wheat", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Wheat target for national self-sufficiency.", "confidence": 95, "updated": "Today" },
+    { "id": "farms", "name": "Producer cohorts", "type": "Enterprise", "source": "Agriculture Registry", "icon": "agriculture", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Southern region farms contributing production.", "confidence": 88, "updated": "Today" },
+    { "id": "irrigation", "name": "Irrigation scheme", "type": "Infrastructure", "source": "Land and Water Registry", "icon": "water_drop", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Water capacity supporting the production plan.", "confidence": 90, "updated": "Yesterday" },
+    { "id": "milling", "name": "Milling capacity", "type": "Facility", "source": "Food Industry Registry", "icon": "factory", "cssClass": "asset", "position": "left: 78%; top: 72%;", "description": "Milling capacity required for self-sufficiency.", "confidence": 84, "updated": "Today" },
+    { "id": "risk", "name": "Input timing risk", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Seed and fertiliser delivery is behind the planting window.", "confidence": 82, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "farms", "to": "target", "label": "contributes to", "confidence": 89, "isInferred": false },
+    { "from": "irrigation", "to": "farms", "label": "enables", "confidence": 90, "isInferred": false },
+    { "from": "farms", "to": "milling", "label": "supplies", "confidence": 86, "isInferred": false },
+    { "from": "risk", "to": "farms", "label": "constrains", "confidence": 82, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Planting window reviewed", "description": "Input timing risk escalated to programme owner", "when": "Today", "icon": "warning_amber", "style": "Warning" },
+    { "title": "Irrigation verified", "description": "Water capacity evidence reconciled", "when": "Yesterday", "icon": "verified", "style": "Success" }
+  ],
+  "risks": [
+    { "name": "Input timing", "owner": "Agriculture Programme", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Milling capacity", "owner": "Food Security Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Escalate input delivery", "reason": "Protect the planting window and self-sufficiency target.", "icon": "priority_high", "style": "Warning" }
+  ]
+}

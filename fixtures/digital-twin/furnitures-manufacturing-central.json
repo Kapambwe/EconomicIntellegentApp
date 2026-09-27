@@ -1,0 +1,29 @@
+{
+  "scenarioId": "furnitures-manufacturing-central",
+  "context": { "target": "Furnitures", "industry": "Manufacturing", "geography": "Central region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 7, "verifiedRelationships": 12, "criticalDependencies": 2, "confidence": 88, "sourceFreshness": 94.8 },
+  "nodes": [
+    { "id": "target", "name": "Furniture production", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Expand competitive local furniture production.", "confidence": 94, "updated": "Today" },
+    { "id": "makers", "name": "Furniture makers", "type": "Enterprise", "source": "Business Registry", "icon": "carpenter", "cssClass": "institution", "position": "left: 18%; top: 20%;", "description": "Local businesses with verified production capacity.", "confidence": 89, "updated": "Today" },
+    { "id": "timber", "name": "Timber supply", "type": "Enterprise", "source": "Natural Resources Registry", "icon": "forest", "cssClass": "asset", "position": "left: 80%; top: 20%;", "description": "Certified local timber supply for production.", "confidence": 86, "updated": "Yesterday" },
+    { "id": "buyers", "name": "Institutional buyers", "type": "Market", "source": "Procurement Gateway", "icon": "business", "cssClass": "institution", "position": "left: 78%; top: 72%;", "description": "Schools, offices and hospitality buyer demand.", "confidence": 91, "updated": "Today" },
+    { "id": "risk", "name": "Working capital gap", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Businesses cannot finance orders before payment.", "confidence": 83, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "makers", "to": "target", "label": "contributes to", "confidence": 90, "isInferred": false },
+    { "from": "timber", "to": "makers", "label": "supplies", "confidence": 86, "isInferred": false },
+    { "from": "makers", "to": "buyers", "label": "fulfils", "confidence": 91, "isInferred": false },
+    { "from": "risk", "to": "makers", "label": "constrains", "confidence": 83, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Buyer order matched", "description": "Institutional order linked to local makers", "when": "Today", "icon": "handshake", "style": "Success" },
+    { "title": "Finance gap detected", "description": "Working capital constraint added to action queue", "when": "Yesterday", "icon": "warning_amber", "style": "Warning" }
+  ],
+  "risks": [
+    { "name": "Working capital", "owner": "Small Business Programme", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Timber certification", "owner": "Natural Resources Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Create order-finance intervention", "reason": "Convert verified demand into local production.", "icon": "account_balance", "style": "Warning" }
+  ]
+}

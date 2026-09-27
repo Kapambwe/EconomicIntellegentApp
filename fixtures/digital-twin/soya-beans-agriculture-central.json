@@ -1,0 +1,32 @@
+{
+  "scenarioId": "soya-beans-agriculture-central",
+  "context": { "target": "Soya Beans", "industry": "Agriculture", "geography": "Central region", "period": "Current quarter", "generatedAt": "2026-09-26T08:42:00+02:00", "dataState": "Verified" },
+  "summary": { "connectedEntities": 8, "verifiedRelationships": 15, "criticalDependencies": 2, "confidence": 91, "sourceFreshness": 94.2 },
+  "nodes": [
+    { "id": "target", "name": "3M tonnes soya", "type": "Target", "source": "Targets Registry", "icon": "track_changes", "cssClass": "target", "position": "left: 50%; top: 45%;", "description": "Soya bean target expanding agro-processing.", "confidence": 95, "updated": "Today" },
+    { "id": "cohorts", "name": "Producer cohorts", "type": "Enterprise", "source": "Agriculture Registry", "icon": "groups", "cssClass": "institution", "position": "left: 16%; top: 20%;", "description": "12 producer cohorts contributing verified capacity.", "confidence": 90, "updated": "Today" },
+    { "id": "irrigation", "name": "Irrigation capacity", "type": "Asset", "source": "Land and Water Registry", "icon": "water_drop", "cssClass": "asset", "position": "left: 82%; top: 20%;", "description": "Irrigated hectares available to producer cohorts.", "confidence": 88, "updated": "Yesterday" },
+    { "id": "processor", "name": "Agro-processor", "type": "Facility", "source": "Enterprise Registry", "icon": "factory", "cssClass": "asset", "position": "left: 78%; top: 72%;", "description": "Processing capacity is below the expected harvest window.", "confidence": 86, "updated": "Today" },
+    { "id": "finance", "name": "Working capital", "type": "Commitment", "source": "Finance Gateway", "icon": "account_balance", "cssClass": "institution", "position": "left: 20%; top: 72%;", "description": "Approved seasonal finance linked to producers.", "confidence": 93, "updated": "Yesterday" },
+    { "id": "risk", "name": "Processing bottleneck", "type": "Risk", "source": "Assurance Engine", "icon": "warning_amber", "cssClass": "risk", "position": "left: 50%; top: 80%;", "description": "Processor throughput may constrain verified output.", "confidence": 82, "updated": "Today" }
+  ],
+  "relationships": [
+    { "from": "cohorts", "to": "target", "label": "contributes to", "confidence": 90, "isInferred": false },
+    { "from": "target", "to": "irrigation", "label": "requires", "confidence": 87, "isInferred": false },
+    { "from": "cohorts", "to": "processor", "label": "supplies", "confidence": 89, "isInferred": false },
+    { "from": "finance", "to": "cohorts", "label": "finances", "confidence": 93, "isInferred": false },
+    { "from": "risk", "to": "processor", "label": "constrains", "confidence": 82, "isInferred": false }
+  ],
+  "activities": [
+    { "title": "Capacity review opened", "description": "Processor throughput review assigned", "when": "Today", "icon": "factory", "style": "Warning" },
+    { "title": "Finance verified", "description": "Seasonal working capital commitment reconciled", "when": "Yesterday", "icon": "verified", "style": "Success" }
+  ],
+  "risks": [
+    { "name": "Processing throughput", "owner": "Agriculture Programme", "impact": "High", "status": "At risk", "badge": "Warning" },
+    { "name": "Input delivery", "owner": "Producer Support Office", "impact": "Medium", "status": "Monitoring", "badge": "Info" }
+  ],
+  "actions": [
+    { "title": "Open processing intervention", "reason": "Coordinate finance, storage and processor capacity.", "icon": "priority_high", "style": "Warning" },
+    { "title": "Validate cohort readiness", "reason": "Confirm input and irrigation readiness before harvest.", "icon": "fact_check", "style": "Info" }
+  ]
+}
