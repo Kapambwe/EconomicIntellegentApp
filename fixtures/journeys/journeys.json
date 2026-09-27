@@ -1,0 +1,191 @@
+[
+  {
+    "id": "JRN-0001",
+    "name": "National power delivery journey",
+    "journeyType": "Infrastructure delivery",
+    "actorId": "ACT-0104",
+    "actorName": "National Electricity Authority",
+    "actorClass": "Government agency",
+    "target": "Electricity Generation",
+    "industry": "Energy & utilities",
+    "geography": "National",
+    "implementationId": "IMP-POWER-001",
+    "currentStage": "Production or delivery",
+    "status": "At risk",
+    "healthScore": 68,
+    "progressPercent": 64,
+    "accountableOwner": "Energy Delivery Office",
+    "currentMilestone": "Grid connection approval",
+    "nextAction": "Approve grid intervention and set SLA",
+    "slaState": "Overdue",
+    "slaDueAt": "Today",
+    "evidenceState": "4 of 5 verified",
+    "lastEvent": "Connection delay detected",
+    "eventFreshness": "Live",
+    "lastUpdated": "2 hours ago",
+    "stages": [
+      { "name": "Proposed", "status": "Completed", "owner": "Programme Office", "evidence": "Target mandate", "sla": "Closed" },
+      { "name": "Approved", "status": "Completed", "owner": "Treasury Gateway", "evidence": "Funding approval", "sla": "Closed" },
+      { "name": "Production or delivery", "status": "Current", "owner": "Energy Delivery Office", "evidence": "Connection evidence", "sla": "Overdue" },
+      { "name": "Completed", "status": "Upcoming", "owner": "Programme Office", "evidence": "Commissioning record", "sla": "On track" }
+    ],
+    "milestones": [
+      { "name": "Grid connection approval", "status": "At risk", "due": "Today", "owner": "Energy Delivery Office" },
+      { "name": "Facility commissioning", "status": "Upcoming", "due": "18 Oct 2026", "owner": "Generation Facility" }
+    ],
+    "events": [
+      { "type": "RiskDetected", "description": "Grid dependency moved beyond SLA", "when": "Yesterday", "source": "Assurance Engine" },
+      { "type": "FundingMilestone", "description": "Capital commitment moved to approved", "when": "2 days ago", "source": "Treasury Gateway" }
+    ]
+  },
+  {
+    "id": "JRN-0017",
+    "name": "Northern copper export readiness",
+    "journeyType": "Market enablement",
+    "actorId": "ACT-0017",
+    "actorName": "Northern Copper Resources",
+    "actorClass": "Mining company",
+    "target": "Copper",
+    "industry": "Mining",
+    "geography": "Northern corridor",
+    "implementationId": "IMP-COPPER-017",
+    "currentStage": "Market or buyer readiness",
+    "status": "On track",
+    "healthScore": 91,
+    "progressPercent": 82,
+    "accountableOwner": "Trade Facilitation Desk",
+    "currentMilestone": "Buyer quality pack",
+    "nextAction": "Complete buyer evidence pack",
+    "slaState": "On track",
+    "slaDueAt": "30 Sep 2026",
+    "evidenceState": "6 of 6 verified",
+    "lastEvent": "Quality evidence verified",
+    "eventFreshness": "Recent",
+    "lastUpdated": "Yesterday",
+    "stages": [
+      { "name": "Approved", "status": "Completed", "owner": "Mining Office", "evidence": "Operating licence", "sla": "Closed" },
+      { "name": "Market or buyer readiness", "status": "Current", "owner": "Trade Facilitation Desk", "evidence": "Buyer quality pack", "sla": "On track" },
+      { "name": "Completed", "status": "Upcoming", "owner": "Trade Facilitation Desk", "evidence": "Offtake confirmation", "sla": "On track" }
+    ],
+    "milestones": [
+      { "name": "Buyer quality pack", "status": "In progress", "due": "30 Sep 2026", "owner": "Trade Facilitation Desk" },
+      { "name": "Offtake confirmation", "status": "Upcoming", "due": "12 Oct 2026", "owner": "Northern Copper Resources" }
+    ],
+    "events": [
+      { "type": "EvidenceVerified", "description": "Quality certificate reconciled", "when": "Yesterday", "source": "Mining Registry" },
+      { "type": "WorkflowActionGenerated", "description": "Buyer pack review task created", "when": "2 days ago", "source": "Workflow Engine" }
+    ]
+  },
+  {
+    "id": "JRN-0032",
+    "name": "Soya cooperative enablement",
+    "journeyType": "Enterprise enablement",
+    "actorId": "ACT-0032",
+    "actorName": "Mhlabeni Soya Cooperative",
+    "actorClass": "Farmer / cooperative",
+    "target": "Soya Beans",
+    "industry": "Agriculture",
+    "geography": "Central region",
+    "implementationId": "IMP-SOYA-032",
+    "currentStage": "Enablement",
+    "status": "Awaiting evidence",
+    "healthScore": 76,
+    "progressPercent": 48,
+    "accountableOwner": "Agriculture Support Desk",
+    "currentMilestone": "Training attendance evidence",
+    "nextAction": "Request missing training evidence",
+    "slaState": "Due soon",
+    "slaDueAt": "02 Oct 2026",
+    "evidenceState": "3 of 5 verified",
+    "lastEvent": "Training assessment submitted",
+    "eventFreshness": "Recent",
+    "lastUpdated": "3 hours ago",
+    "stages": [
+      { "name": "Proposed", "status": "Completed", "owner": "Agriculture Office", "evidence": "Cooperative record", "sla": "Closed" },
+      { "name": "Enablement", "status": "Current", "owner": "Agriculture Support Desk", "evidence": "Training attendance", "sla": "Due soon" },
+      { "name": "Production or delivery", "status": "Upcoming", "owner": "Cooperative", "evidence": "Production report", "sla": "On track" }
+    ],
+    "milestones": [
+      { "name": "Training attendance evidence", "status": "Awaiting evidence", "due": "02 Oct 2026", "owner": "Agriculture Support Desk" },
+      { "name": "First production report", "status": "Upcoming", "due": "20 Oct 2026", "owner": "Mhlabeni Soya Cooperative" }
+    ],
+    "events": [
+      { "type": "EvidenceRequested", "description": "Attendance register requested", "when": "3 hours ago", "source": "Workflow Engine" },
+      { "type": "TrainingAssessmentFailed", "description": "Two participants require a follow-up assessment", "when": "Yesterday", "source": "Training Service" }
+    ]
+  },
+  {
+    "id": "JRN-0046",
+    "name": "Agro-processing activation",
+    "journeyType": "Enterprise enablement",
+    "actorId": "ACT-0046",
+    "actorName": "Ubuntu Agro Processing",
+    "actorClass": "Private company",
+    "target": "Soya Beans",
+    "industry": "Agro-processing",
+    "geography": "Central region",
+    "implementationId": "IMP-AGRO-046",
+    "currentStage": "Activated",
+    "status": "Blocked",
+    "healthScore": 43,
+    "progressPercent": 29,
+    "accountableOwner": "Enterprise Activation Office",
+    "currentMilestone": "Operating finance release",
+    "nextAction": "Escalate delayed funding release",
+    "slaState": "Escalated",
+    "slaDueAt": "Overdue by 4 days",
+    "evidenceState": "2 of 6 verified",
+    "lastEvent": "Funding release overdue",
+    "eventFreshness": "Critical stale",
+    "lastUpdated": "4 days ago",
+    "stages": [
+      { "name": "Approved", "status": "Completed", "owner": "Enterprise Office", "evidence": "Approval record", "sla": "Closed" },
+      { "name": "Activated", "status": "Blocked", "owner": "Enterprise Activation Office", "evidence": "Funding release", "sla": "Escalated" },
+      { "name": "Production or delivery", "status": "Upcoming", "owner": "Ubuntu Agro Processing", "evidence": "Production launch", "sla": "Paused" }
+    ],
+    "milestones": [
+      { "name": "Operating finance release", "status": "Blocked", "due": "Overdue by 4 days", "owner": "Development Growth Bank" },
+      { "name": "Production launch", "status": "Paused", "due": "TBC", "owner": "Ubuntu Agro Processing" }
+    ],
+    "events": [
+      { "type": "PaymentOverdue", "description": "Approved operating finance has not been released", "when": "4 days ago", "source": "Finance Gateway" },
+      { "type": "ActionCreated", "description": "Funding escalation assigned to Enterprise Office", "when": "3 days ago", "source": "Assurance Engine" }
+    ]
+  },
+  {
+    "id": "JRN-0063",
+    "name": "Footwear market launch",
+    "journeyType": "Enterprise enablement",
+    "actorId": "ACT-0063",
+    "actorName": "Kopano Footwear Works",
+    "actorClass": "SME",
+    "target": "Shoes",
+    "industry": "Shoes & leather",
+    "geography": "Southern region",
+    "implementationId": "IMP-SHOES-063",
+    "currentStage": "Completed",
+    "status": "Completed",
+    "healthScore": 95,
+    "progressPercent": 100,
+    "accountableOwner": "SME Growth Desk",
+    "currentMilestone": "Offtake handover",
+    "nextAction": "Monitor post-launch outcomes",
+    "slaState": "Closed",
+    "slaDueAt": "Closed",
+    "evidenceState": "8 of 8 verified",
+    "lastEvent": "Offtake handover completed",
+    "eventFreshness": "Recent",
+    "lastUpdated": "22 Sep 2026",
+    "stages": [
+      { "name": "Approved", "status": "Completed", "owner": "SME Growth Desk", "evidence": "Approval record", "sla": "Closed" },
+      { "name": "Production or delivery", "status": "Completed", "owner": "Kopano Footwear Works", "evidence": "Delivery record", "sla": "Closed" },
+      { "name": "Completed", "status": "Completed", "owner": "SME Growth Desk", "evidence": "Offtake handover", "sla": "Closed" }
+    ],
+    "milestones": [
+      { "name": "Offtake handover", "status": "Completed", "due": "22 Sep 2026", "owner": "SME Growth Desk" }
+    ],
+    "events": [
+      { "type": "ContractUpdated", "description": "Retail buyer accepted delivery handover", "when": "22 Sep 2026", "source": "Buyer Gateway" }
+    ]
+  }
+]

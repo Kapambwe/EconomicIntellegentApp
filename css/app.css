@@ -21,3 +21,58 @@ html, body {
     cursor: pointer;
     float: right;
 }
+
+.engine-user-container {
+    position: relative;
+    z-index: 5001;
+}
+
+.engine-user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+}
+
+.engine-user-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background: rgba(15, 23, 42, 0.2);
+}
+
+.engine-user-menu {
+    position: fixed;
+    top: 4rem;
+    right: 0.75rem;
+    width: 280px;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+    z-index: 5001;
+}
+
+.fieldops-user-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(15, 23, 42, 0.2);
+}
+
+.fieldops-user-menu {
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    width: 280px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+    z-index: 1200;
+}
